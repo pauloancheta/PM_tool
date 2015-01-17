@@ -1,0 +1,26 @@
+<h2> Task INDEX </h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @tasks.each do |task| %>
+    <tr>
+    <td><%= link_to task.title, task %></td>
+    <td><%= task.due_date %></td>
+    <td>
+
+      <%= link_to "EDIT", edit_task_path(task) %>
+      <%= link_to "DELETE", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%>
+
+    </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
