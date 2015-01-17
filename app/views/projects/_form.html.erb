@@ -1,0 +1,12 @@
+<%= form_for @project do |p| %>
+  <%= p.label :title %>
+  <%= p.text_field :title %>
+  <br>
+  <%= p.label :description %>
+  <%= p.text_area :description %>
+  <br>
+  <%= p.label :due_date %>
+  <%= p.datetime_local_field :due_date %>
+  <br>
+  <%= p.submit %>
+<% end %>

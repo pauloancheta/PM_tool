@@ -1,3 +1,7 @@
+<!-- 
+is there somewhere - halsey  
+kings and queens - brooke fraser 
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +11,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<a href="/">The Home Page</a>
-|
-<a href="/home/about/">The About Page</a>
-<br>
-<a href="/tasks/">Tasks Index Page </a>
-|
-<a href="/tasks/new">New tasks Page </a>
-<br><br>
-<%= yield %>
+  <div class="container-fluid">
+    <a href="/" class="btn btn-default" >The Home Page</a>
+    
+    <a href="/home/about/" class="btn btn-default" >The About Page</a>
+    
+    <a href="/tasks/" class="btn btn-default" >Tasks Index Page </a>
+    
+    <a href="/tasks/new" class="btn btn-default" >New tasks Page </a>
+    <br>
+    <a href="/projects/" class="btn btn-default">Project Index </a>
+    <a href="/projects/new" class="btn btn-default"> New Project </a>
+
+
+    <br><br>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
