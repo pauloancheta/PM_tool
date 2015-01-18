@@ -2,4 +2,5 @@
 <p><%= @project.description %></p>
 <p><%= @project.due_date %></p>
 
-<!-- just want to put another commit -->
+<%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default" %>
+<%= link_to "DELETE", project_path(@project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>

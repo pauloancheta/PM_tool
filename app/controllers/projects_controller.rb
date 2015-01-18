@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :project_id, only: [:show, :edit, :update, :destroy]
   def index
     @projects = Project.order(:id)
+    @projects = Project.search(params[:search])
   end
 
   def new
@@ -30,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to projects_path
+    redirect_to projects_path 
   end
 
   private
