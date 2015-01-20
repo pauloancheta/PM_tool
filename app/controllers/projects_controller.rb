@@ -1,8 +1,12 @@
-class ProjectsController < ApplicationController
+  class ProjectsController < ApplicationController
   before_action :project_id, only: [:show, :edit, :update, :destroy]
   def index
-    @projects = Project.order(:id)
-    @projects = Project.search(params[:search])
+    
+    if params[:search].present?
+      @projects = Project.paginate(:page => params[:page], :per_page => 5).search params[:search]
+    else
+      @projects = Project.paginate(:page => params[:page], :per_page => 5).order(:id)
+    end
   end
 
   def new

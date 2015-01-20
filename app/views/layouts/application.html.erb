@@ -24,7 +24,7 @@ kings and queens - brooke fraser
     <a href="/projects/new" class="btn btn-default"> New Project </a>
 
     
-      <% form_tag projects_path, :method => 'get' do %>
+      <%= form_tag projects_path, :method => 'get' do %>
         <p>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Search", :name => nil %>

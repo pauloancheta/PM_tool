@@ -35,6 +35,7 @@ group :development do
   gem 'interactive_editor'
   gem 'awesome_print'
 end
+gem 'will_paginate', '~> 3.0.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
