@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
-  validates :title, presence: true, uniqueness: true
+
+  validates :title, presence: true, uniqueness: {scope: :project_id}
 
   def self.search(search)
     if search
