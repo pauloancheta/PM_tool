@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
-    @project.finished = false #you cannot create a finished project. That would not make sense
+    @project.status = false #you cannot create a finished project. That would not make sense
     if @project.save
       redirect_to projects_path
     else

@@ -12,7 +12,7 @@ class TasksController < ApplicationController
       redirect_to project_path(@project)
     else
       @project.tasks.reload
-      render "projects/show"
+      redirect_to project_path(@project), alert: "Invalid task!"
     end
   end
 
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     @project = Project.find params[:project_id]
     @task = Task.find params[:id]
     @task.destroy
-    redirect_to project_path(@project)
+    redirect_to project_path(@project), notice: "Task deleted"
     
   end
 

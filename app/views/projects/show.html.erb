@@ -15,7 +15,7 @@
 
 <div class="well">
   <h4>Tasks: </h4>
-  <%= link_to "Create A Task", new_project_task_path(@project), class: "btn btn-default btn-xs"%>
+  <%= flash[:alert] %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -38,6 +38,7 @@
         <% end %> 
     </tbody>
   </table>
+  <span float="right"><%= link_to "Create A Task", new_project_task_path(@project), class: "btn btn-default btn-xs"%></span>
 </div>
 
 <div class="well">
