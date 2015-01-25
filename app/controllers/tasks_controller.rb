@@ -1,36 +1,39 @@
 class TasksController < ApplicationController
-  before_action :task_id, only: [:show, :edit, :update, :destroy]
-  def index
-    @tasks = Task.order(:id).reverse
-  end
-
+  
   def new
-    @task = Task.new 
+    @project = Project.find params[:project_id]
+    @task = @project.tasks.new
   end
 
   def create
-    @task = Task.new task_params
+    @project = Project.find params[:project_id]
+    @task = @project.tasks.new task_params
     if @task.save
-      redirect_to tasks_path
+      redirect_to project_path(@project)
     else
-      render :new
+      @project.tasks.reload
+      render "projects/show"
     end
   end
 
-  def show
+  def destroy
+    @project = Project.find params[:project_id]
+    @task = Task.find params[:id]
+    @task.destroy
+    redirect_to project_path(@project)
+    
   end
 
   def edit
+    @project = Project.find params[:project_id]
+    @task = Task.find params[:id]
   end
 
   def update
+    @project = Project.find params[:project_id]
+    @task = Task.find params[:id]
     @task.update task_params
-    redirect_to tasks_path
-  end
-
-  def destroy
-    @task.destroy
-    redirect_to tasks_path
+    redirect_to project_path(@project)
   end
 
   private
@@ -38,7 +41,4 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :due_date)
   end
 
-  def task_id
-    @task = Task.find params[:id]
-  end
 end

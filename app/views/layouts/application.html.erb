@@ -12,30 +12,24 @@ kings and queens - brooke fraser
 </head>
 <body>
   <div class="container-fluid">
-    <a href="/" class="btn btn-default" >The Home Page</a>
-    
-    <a href="/home/about/" class="btn btn-default" >The About Page</a>
-    
-    <a href="/tasks/" class="btn btn-default" >Tasks Index Page </a>
-    
-    <a href="/tasks/new" class="btn btn-default" >New tasks Page </a>
-    <br>
-    <a href="/projects/" class="btn btn-default">Project Index </a>
-    <a href="/projects/new" class="btn btn-default"> New Project </a>
-
-    
-      <%= form_tag projects_path, :method => 'get' do %>
-        <p>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search", :name => nil %>
-        </p>
-      <% end %>
-    
+    <div class="row">
+      <div class="col-md-8">
+        <a href="/" class="btn btn-default" >The Home Page</a>
+        <a href="/home/about/" class="btn btn-default" >The About Page</a>
+        <a href="/projects/" class="btn btn-default">Projects </a>
+      </div>
+      
+      <div class="col-md-4">
+        <%= form_tag projects_path, :method => 'get' do %>
+          <p>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :name => nil %>
+          </p>
+        <% end %>
+      </div>
+    </div>
 
 
-
-
-    <br><br>
     <%= yield %>
   </div>
 

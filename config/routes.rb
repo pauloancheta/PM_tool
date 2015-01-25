@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  
   root "home#index"
   get "home/about" => "home#about"
+  get "projects/:id/toggle" => "projects#toggle", as: :change_toggle
 
-  resources :tasks
+  resources :projects do 
+    resources :tasks, only: [:new, :create, :destroy, :edit, :update]
 
-  resources :projects
+    resources :discussions
+  end
+
+  resources :discussions, only: [] do
+    resources :comments, only: [:create, :destroy, :new]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

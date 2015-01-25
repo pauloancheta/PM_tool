@@ -1,6 +1,6 @@
 <h2> PROJECT INDEX </h2>
-
 <table class="table table-striped">
+<a href="/projects/new" class="btn btn-default btn-xs"> Create A New Project </a>
   <thead>
     <tr>
       <th>Title</th>
@@ -20,6 +20,9 @@
 
         <%= link_to "EDIT", edit_project_path(p), class: "btn btn-default" %>
         <%= link_to "DELETE", project_path(p), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+
+        
+
       </td>
     </tr>
     <% end %> 
@@ -29,3 +32,4 @@
 
 
 <%= will_paginate @projects %>
+

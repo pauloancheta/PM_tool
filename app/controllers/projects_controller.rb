@@ -1,9 +1,9 @@
-  class ProjectsController < ApplicationController
-  before_action :project_id, only: [:show, :edit, :update, :destroy]
+class ProjectsController < ApplicationController
+  before_action :project_id, only: [:show, :edit, :update, :destroy, :toggle]
   def index
     
     if params[:search].present?
-      @projects = Project.paginate(:page => params[:page], :per_page => 5).search params[:search]
+      @projects = Project.paginate(:page => params[:page], :per_page => 5).search params[:id]
     else
       @projects = Project.paginate(:page => params[:page], :per_page => 5).order(:id)
     end
@@ -15,6 +15,7 @@
 
   def create
     @project = Project.new project_params
+    @project.finished = false #you cannot create a finished project. That would not make sense
     if @project.save
       redirect_to projects_path
     else
@@ -23,6 +24,7 @@
   end
 
   def show
+    # @task = Task.new
   end
 
   def edit
@@ -38,9 +40,20 @@
     redirect_to projects_path 
   end
 
+  #toggle button
+  def toggle
+    if @project.finished == true
+      @project.finished = false
+    else
+      @project.finished = true
+    end
+    @project.save
+    redirect_to projects_path
+  end
+
   private
   def project_params
-    params.require(:project).permit(:title, :description, :due_date)
+    params.require(:project).permit(:title, :description, :due_date, :finished, :category)
   end
 
   def project_id
