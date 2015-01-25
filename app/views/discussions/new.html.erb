@@ -1,0 +1,11 @@
+<h3>Create a new discussion:</h3>
+
+<%= form_for [@project, @discussion] do |d| %>
+  <%= d.label :title %>
+  <%= d.text_field :title %>
+  <br>
+  <%= d.label :description %>
+  <%= d.text_field :description %>
+  <br>
+  <%= d.submit %>
+<% end %>

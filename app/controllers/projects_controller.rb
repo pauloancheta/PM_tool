@@ -3,9 +3,9 @@ class ProjectsController < ApplicationController
   def index
     
     if params[:search].present?
-      @projects = Project.paginate(:page => params[:page], :per_page => 5).search params[:id]
+      @projects = Project.paginate(:page => params[:page], :per_page => 5).search params[:status]
     else
-      @projects = Project.paginate(:page => params[:page], :per_page => 5).order(:id)
+      @projects = Project.paginate(:page => params[:page], :per_page => 5).order(:status)
     end
   end
 
@@ -42,10 +42,10 @@ class ProjectsController < ApplicationController
 
   #toggle button
   def toggle
-    if @project.finished == true
-      @project.finished = false
+    if @project.status == true
+      @project.status = false
     else
-      @project.finished = true
+      @project.status = true
     end
     @project.save
     redirect_to projects_path

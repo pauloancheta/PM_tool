@@ -21,6 +21,11 @@
         <%= link_to "EDIT", edit_project_path(p), class: "btn btn-default" %>
         <%= link_to "DELETE", project_path(p), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
 
+        <% if p.status == true %>
+          <%= link_to "DONE", change_toggle_path(p), class: "btn btn-default" %>
+        <% else %>
+          <%= link_to "NOT DONE", change_toggle_path(p), class: "btn btn-default" %>
+        <% end %>
         
 
       </td>

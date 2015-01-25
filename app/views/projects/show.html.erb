@@ -1,6 +1,87 @@
-<h3><%= @project.title %></h3>
-<p><%= @project.description %></p>
-<p><%= @project.due_date %></p>
+<h2><%= @project.title %></h2>
+<h5>Description:</h5>
+<p>&emsp;<%= @project.description %></p>
+<% if @project.category.present? %>
+  <h5>Category:</h5>
+  <p>&emsp;<%= @project.category %></p>
+<% end %>
+<h5>Due Date:</h5>
+<p>&emsp;<%= @project.due_date %></p>
 
-<%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default" %>
-<%= link_to "DELETE", project_path(@project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+<%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default btn-xs" %>
+<%= link_to "DELETE", project_path(@project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default btn-xs" %>
+
+<br><br>
+
+<div class="well">
+  <h4>Tasks: </h4>
+  <%= link_to "Create A Task", new_project_task_path(@project), class: "btn btn-default btn-xs"%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th></th>
+      </tr>
+
+    </thead>
+    <tbody>
+        <% @project.tasks.each do |task| %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.due_date %></td>
+          <td><%= link_to "Delete Task", project_task_path(@project, task), method: :delete, data: {confirm: "are you sure?"} %> |
+
+            <%= link_to "Edit Task", edit_project_task_path(@project, task) %>
+          </td>
+        </tr>
+        <% end %> 
+    </tbody>
+  </table>
+</div>
+
+<div class="well">
+<h4>Discussions:</h4>
+<%= link_to "Create a Discussion", new_project_discussion_path(@project), class: "btn btn-default btn-xs"%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project.discussions.each do |discussion| %>
+    <tr>
+      <td><%= link_to discussion.title, project_discussion_path(@project, discussion) %></td>
+      <td><%= discussion.description %></td>
+      <td>
+        <%= link_to "Delete Discussion", project_discussion_path(@project, discussion), method: :delete, data: {confirm: "Are you sure?"} %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

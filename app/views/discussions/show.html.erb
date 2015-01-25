@@ -1,0 +1,33 @@
+
+<div class="well">
+  <center>
+    <h2><%= @discussion.title %></h2>
+    <p><%= @discussion.description %></p>
+  </center>
+</div>
+
+<div class="well well-sm">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Comments:</th>
+      <th><%= link_to "Create New Comment", new_discussion_comment_path(@discussion), class: "btn btn-default btn-xs"%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td>
+        <%= comment.body %>
+        </td>
+        <td>
+        <%= link_to "Delete this comment", discussion_comment_path(@discussion, comment), method: :delete, data: {confirm: "are you sure?"} %>
+        </td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+</div>
