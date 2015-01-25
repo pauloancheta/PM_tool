@@ -26,6 +26,6 @@ class DiscussionsController < ApplicationController
   def destroy
     @discussion = Discussion.find params[:id]
     @discussion.destroy
-    redirect_to project_path(@discussion.project_id)
+    redirect_to project_path(@discussion.project_id), alert: "Discussion deleted"
   end
 end

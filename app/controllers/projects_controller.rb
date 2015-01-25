@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :project_id, only: [:show, :edit, :update, :destroy, :toggle]
   def index
     
@@ -17,9 +18,9 @@ class ProjectsController < ApplicationController
     @project = Project.new project_params
     @project.status = false #you cannot create a finished project. That would not make sense
     if @project.save
-      redirect_to projects_path
+      redirect_to projects_path, notice: "Project created successfully"
     else
-      render :new
+      render :new, alert: "Invalid project"
     end
   end
 
@@ -32,12 +33,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project.update project_params
-    redirect_to projects_path
+    redirect_to projects_path, notice: "Project updated"
   end
 
   def destroy
     @project.destroy
-    redirect_to projects_path 
+    redirect_to projects_path, notice: "Project deleted"
   end
 
   #toggle button

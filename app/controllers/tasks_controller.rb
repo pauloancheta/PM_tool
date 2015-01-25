@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @project = Project.find params[:project_id]
     @task = @project.tasks.new task_params
     if @task.save
-      redirect_to project_path(@project)
+      redirect_to project_path(@project), notice: "Task created successfully"
     else
       @project.tasks.reload
       redirect_to project_path(@project), alert: "Invalid task!"
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     @project = Project.find params[:project_id]
     @task = Task.find params[:id]
     @task.update task_params
-    redirect_to project_path(@project)
+    redirect_to project_path(@project), notice: "Task updated"
   end
 
   private

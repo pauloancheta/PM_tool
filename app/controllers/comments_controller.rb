@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @discussion = Discussion.find params[:discussion_id]
     @comment = @discussion.comments.new params.require(:comment).permit(:body)
     if @comment.save
-      redirect_to project_discussion_path(@discussion.project_id, @discussion)
+      redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment created successfully"
     end
   end
 
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @discussion = Discussion.find params[:discussion_id]
     @comment = Comment.find params[:id]
     @comment.destroy
-    redirect_to project_discussion_path(@discussion.project_id, @discussion)
+    redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment deleted"
   end
 
 end

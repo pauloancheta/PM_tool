@@ -36,6 +36,7 @@ group :development do
   gem 'awesome_print'
 end
 gem 'will_paginate', '~> 3.0.6'
+gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
