@@ -20,6 +20,13 @@ kings and queens - brooke fraser
       </div>
       
       <div class="col-md-4">
+        <% if user_signed_in? %>
+          <span>Hello, <%= current_user.first_name.capitalize %></span>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path %>
+        <% end %>
+
         <%= form_tag projects_path, :method => 'get' do %>
           <p>
             <%= text_field_tag :search, params[:search] %>
