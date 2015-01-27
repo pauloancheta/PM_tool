@@ -7,6 +7,10 @@
 <% end %>
 <h5>Due Date:</h5>
 <p>&emsp;<%= @project.due_date %></p>
+<% if @project.user_id.present? %>
+<h5>Created By:</h5>
+<p>&emsp;<%= @user.first_name %></p>
+<% end %>
 
 <%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default btn-xs" %>
 <%= link_to "DELETE", project_path(@project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default btn-xs" %>

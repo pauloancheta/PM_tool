@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   def index
     
     if params[:search].present?
-      @projects = Project.paginate(:page => params[:page], :per_page => 5).search params[:status]
+      @projects = Project.search params[:status]
     else
       @projects = Project.paginate(:page => params[:page], :per_page => 5).order(:status)
     end
@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
+    @project.user_id = current_user.id
     @project.status = false #you cannot create a finished project. That would not make sense
     if @project.save
       redirect_to projects_path, notice: "Project created successfully"
@@ -26,6 +27,7 @@ class ProjectsController < ApplicationController
 
   def show
     # @task = Task.new
+    @user = User.find @project.user_id
   end
 
   def edit

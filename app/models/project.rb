@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   #associations
+  belongs_to :user
   has_many :tasks, dependent: :destroy
   has_many :discussions, dependent: :destroy
 
