@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 
   #associations
   has_many :projects, dependent: :nullify
+  has_many :tasks, dependent: :nullify
+  has_many :comments, dependent: :nullify
+  has_many :discussions, dependent: :nullify
 end

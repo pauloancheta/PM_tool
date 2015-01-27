@@ -25,6 +25,7 @@
       <tr>
         <th>Title</th>
         <th>Due Date</th>
+        <th>Added By</th>
         <th></th>
       </tr>
 
@@ -34,6 +35,7 @@
         <tr>
           <td><%= task.title %></td>
           <td><%= task.due_date %></td>
+          <td><%= (User.find task.user_id).first_name.capitalize %></td>
           <td><%= link_to "Delete Task", project_task_path(@project, task), method: :delete, data: {confirm: "are you sure?"} %> |
 
             <%= link_to "Edit Task", edit_project_task_path(@project, task) %>
@@ -53,6 +55,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Added by</th>
       <th></th>
     </tr>
   </thead>
@@ -61,6 +64,7 @@
     <tr>
       <td><%= link_to discussion.title, project_discussion_path(@project, discussion) %></td>
       <td><%= discussion.description %></td>
+      <td><%= (User.find discussion.user_id).first_name.capitalize %> </td>
       <td>
         <%= link_to "Delete Discussion", project_discussion_path(@project, discussion), method: :delete, data: {confirm: "Are you sure?"} %>
       </td>

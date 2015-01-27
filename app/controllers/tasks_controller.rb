@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   def create
     @project = Project.find params[:project_id]
     @task = @project.tasks.new task_params
+    @task.user_id = current_user.id
     if @task.save
       redirect_to project_path(@project), notice: "Task created successfully"
     else

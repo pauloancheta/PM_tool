@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
   def create
     @discussion = Discussion.find params[:discussion_id]
     @comment = @discussion.comments.new params.require(:comment).permit(:body)
+    @comment.user_id = current_user.id
     if @comment.save
       redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment created successfully"
     end

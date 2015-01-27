@@ -18,6 +18,7 @@
     <% @comments.each do |comment| %>
       <tr>
         <td>
+        <%= (User.find comment.user_id).first_name.capitalize %> said: <br>
         <%= comment.body %>
         </td>
         <td>
