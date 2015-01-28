@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :task_id, only: [:new, :create, :destroy, :edit, :update, :toggle]
-  before_action :project_id, only: [:destroy, :edit, :update]
+  before_action :task_id, only: [:new, :destroy, :edit, :update, :toggle]
+  before_action :project_id, only: [:create, :destroy, :edit, :update]
 
   def new
     @task = @project.tasks.new

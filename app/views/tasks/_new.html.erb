@@ -1,9 +1,9 @@
-<h2> NEW PAGE </h2>
+<h4> Create new task </h4>
 <% if @task.errors.any? %>
   <% @task.errors.full_messages.each do |error| %>
   <h3><%= error %></h3>
   <% end %>
 <% end %>
 
-<%= render 'form' %>
+<%= render 'tasks/form' %>
 

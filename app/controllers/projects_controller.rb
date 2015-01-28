@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    # @task = Task.new
+    @task = Task.new
     @user = User.find @project.user_id
   end
 
