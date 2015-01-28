@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :project_id, only: [:show, :edit, :update, :destroy, :toggle]
+  before_action :project_id, only: [:show, :edit, :update, :destroy]
   def index
     
     if params[:search].present?
       @projects = Project.page(params[:page]).search params[:search]
     else
-      @projects = Project.page(params[:page]).order(:status)
+      @projects = Project.page(params[:page])
       # @projects = Project.search params[:status]
     end
   end
@@ -18,7 +18,6 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new project_params
     @project.user_id = current_user.id
-    @project.status = false #you cannot create a finished project. That would not make sense
     if @project.save
       redirect_to projects_path, notice: "Project created successfully"
     else
@@ -44,16 +43,7 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: "Project deleted"
   end
 
-  #toggle button
-  def toggle
-    if @project.status == true
-      @project.status = false
-    else
-      @project.status = true
-    end
-    @project.save
-    redirect_to projects_path
-  end
+  
 
   private
   def project_params

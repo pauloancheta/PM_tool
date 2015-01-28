@@ -1,0 +1,26 @@
+<div class="well">
+<h4>Discussions:</h4>
+<%= link_to "Create a Discussion", new_project_discussion_path(@project), class: "btn btn-default btn-xs"%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Added by</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project.discussions.each do |discussion| %>
+    <tr>
+      <td><%= link_to discussion.title, project_discussion_path(@project, discussion) %></td>
+      <td><%= discussion.description %></td>
+      <td><%= (User.find discussion.user_id).first_name.capitalize %> </td>
+      <td>
+        <%= link_to "Delete Discussion", project_discussion_path(@project, discussion), method: :delete, data: {confirm: "Are you sure?"} %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>

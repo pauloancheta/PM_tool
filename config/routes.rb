@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root "home#index"
   get "home/about" => "home#about"
-  get "projects/:id/toggle" => "projects#toggle", as: :change_toggle
+  get "task/:id/toggle" => "tasks#toggle", as: :change_toggle
 
   resources :projects do 
     resources :tasks, only: [:new, :create, :destroy, :edit, :update]

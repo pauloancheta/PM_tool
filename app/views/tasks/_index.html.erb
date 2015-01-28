@@ -1,0 +1,36 @@
+<div class="well">
+  <h4>Tasks: </h4>
+  <%= flash[:alert] %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th>Added By</th>
+        <th></th>
+      </tr>
+
+    </thead>
+    <tbody>
+        <% @project.tasks.each do |task| %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.due_date %></td>
+          <td><%= (User.find task.user_id).first_name.capitalize %></td>
+          <td>
+            <% if task.status == true %>
+              <%= link_to "DONE", change_toggle_path(task) %>
+            <% else %>
+              <%= link_to "NOT DONE", change_toggle_path(task) %>
+            <% end %> 
+            |
+            <%= link_to "Delete Task", project_task_path(@project, task), method: :delete, data: {confirm: "are you sure?"} %> |
+
+            <%= link_to "Edit Task", edit_project_task_path(@project, task) %>
+          </td>
+        </tr>
+        <% end %> 
+    </tbody>
+  </table>
+  <span float="right"><%= link_to "Create A Task", new_project_task_path(@project), class: "btn btn-default btn-xs"%></span>
+</div>
