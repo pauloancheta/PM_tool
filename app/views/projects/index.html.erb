@@ -1,10 +1,11 @@
 <h2> PROJECTS </h2>
 <%= flash[:alert] %>
 <table class="table table-striped">
-<a href="/projects/new" class="btn btn-default btn-xs"> Create A New Project </a>
+<a href="/projects/new"><span class="glyphicon glyphicon-plus"></span>Create new project </a>
   <thead>
     <tr>
       <th>Title</th>
+      <th>Category</th>
       <th>Description</th>
       <th>Due Date</th>
       <th></th>
@@ -15,6 +16,7 @@
     <% @projects.each do |p| %>
     <tr>
       <td><%= link_to p.title, project_path(p)%></td>
+      <td><%= p.category %></td>
       <td><%= p.description %></td>
       <td><%= p.due_date %></td>
       <td>

@@ -4,9 +4,10 @@ class ProjectsController < ApplicationController
   def index
     
     if params[:search].present?
-      @projects = Project.search params[:status]
+      @projects = Project.page(params[:page]).search params[:search]
     else
-      @projects = Project.paginate(:page => params[:page], :per_page => 5).order(:status)
+      @projects = Project.page(params[:page]).order(:status)
+      # @projects = Project.search params[:status]
     end
   end
 
