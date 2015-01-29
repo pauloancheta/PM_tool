@@ -3,18 +3,25 @@
     <h2><%= @project.title %></h2>
     <strong>Description:</strong>
     <p>&emsp;<%= @project.description %></p>
-
-     <%# if @project.category.present? %>
-      <strong>Category:</strong>&emsp;<%= @project.categories.map(&:name).join(', ') %>
-      <br>
-    <%# end %>
-   
+    <strong>Category:</strong>&emsp;<%= @project.categories.map(&:name).join(', ') %>
+    <br>
     <strong>Due Date:</strong>&emsp;<%= @project.due_date %>
     <br>
+    
     <% if @project.user_id.present? %>
       <strong>Created By:</strong> &emsp;<%= @user.first_name.capitalize %>
+      <br>
     <% end %>
-  
+
+    <strong>Members: </strong><%= User.find( @project.members.map(&:user_id) ).map(&:first_name).join(', ') %>
+    <br>
+
+    <%# if @user == current_user %>
+      <%#= link_to "ADD MEMBER", project_members_path(@project.id) %>
+    <%# end %>
+
+    
+
   <br>
 
     <%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default btn-xs" %>

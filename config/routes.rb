@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:new, :create, :destroy, :edit, :update]
 
     resources :discussions
+    resources :members, only: [:index, :new, :create, :destroy]
   end
 
   resources :discussions, only: [] do

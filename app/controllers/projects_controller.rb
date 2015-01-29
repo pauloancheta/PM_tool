@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project.update project_params
-    redirect_to projects_path, notice: "Project updated"
+    redirect_to project_path(@project), notice: "Project updated"
   end
 
   def destroy
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:title, :description, :due_date, :finished, {category_ids:[]})
+    params.require(:project).permit(:title, :description, :due_date, :finished, {category_ids:[]}, {user_ids: []})
   end
 
   def project_id

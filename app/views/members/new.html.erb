@@ -1,0 +1,7 @@
+<h2>add members</h2>
+
+<% form_for @project_members do |member| %>
+    <%= member.label :members %>
+    <%= member.collection_check_boxes :user_ids, User.all, :id, :first_name %>
+    <%= member.submit %>
+<% end %>

@@ -7,6 +7,9 @@ class Project < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
 
+  has_many :members, dependent: :destroy
+  has_many :users, through: :members
+
   #validations
   validates :title, presence: true, uniqueness: true
 
@@ -18,6 +21,11 @@ class Project < ActiveRecord::Base
       unscoped
     end
   end
+
+  # def self.show_non_members(members)
+  #   if members
+  #     where("user_id NOT IN")
+  # end
 
   self.per_page = 5
 end

@@ -23,5 +23,9 @@
     <%= p.date_field :due_date, class:"form-control" %>
     </div>
     <br>
+
+    <%= p.label :members %>
+    <%= p.collection_check_boxes :user_ids, User.all, :id, :first_name %>
+  
     <%= p.submit %>
   <% end %>
