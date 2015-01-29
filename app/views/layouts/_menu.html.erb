@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-8 ">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="/">The Home Page</a></li>
+      <li><a href="/home/about/">The About Page</a></li>
+      <% if user_signed_in? %>
+      <li><a href="/projects/">Projects </a></li>
+      <% end %>
+    </ul>
+  </div>
+      
+  <div class="col-md-4">
+    <div class="row">
+      
+      <div class="col-md-7">
+        <%= form_tag projects_path, :method => 'get' do %>
+          <p style="margin-top:10px;">
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :name => nil %>
+          </p>
+        <% end %>
+      </div>
+
+      <div class="col-md-5">
+        <% if user_signed_in? %>
+          <span style="margin-top:15px;">
+            Hello, <%= current_user.first_name.capitalize %>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>  
+          </span>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

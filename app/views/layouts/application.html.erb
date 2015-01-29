@@ -11,36 +11,11 @@ kings and queens - brooke fraser
   <%= csrf_meta_tags %>
 </head>
 <body>
+
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8 ">
-        <ul class="nav nav-tabs">
-        <li><a href="/">The Home Page</a></li>
-        <li><a href="/home/about/">The About Page</a></li>
-        <li><a href="/projects/">Projects </a></li>
-        </ul>
-      </div>
-      
-      <div class="col-md-4">
-        <% if user_signed_in? %>
-          <span>Hello, <%= current_user.first_name.capitalize %></span>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "Sign in", new_user_session_path %>
-        <% end %>
-
-        <%= form_tag projects_path, :method => 'get' do %>
-          <p>
-            <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Search", :name => nil %>
-          </p>
-        <% end %>
-      </div>
-    </div>
-
-    <%= flash[:notice] %>
-
-    <%= yield %>
+      <%= render 'layouts/menu' %>
+      <%= flash[:notice] %>
+      <%= yield %>
   </div>
 
 </body>

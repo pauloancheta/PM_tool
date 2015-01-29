@@ -2,12 +2,10 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :project_id, only: [:show, :edit, :update, :destroy]
   def index
-    
     if params[:search].present?
       @projects = Project.page(params[:page]).search params[:search]
     else
       @projects = Project.page(params[:page])
-      # @projects = Project.search params[:status]
     end
   end
 

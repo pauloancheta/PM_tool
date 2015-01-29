@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  
-  root "home#index"
+    root "home#index"
+    # root "home#landing"
   get "home/about" => "home#about"
   get "task/:id/toggle" => "tasks#toggle", as: :change_toggle
 

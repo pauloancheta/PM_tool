@@ -5,6 +5,8 @@ class HomeController < ApplicationController
       if projects == 0
         redirect_to new_project_path
       end
+    else
+      redirect_to user_session_path
     end
   end
 
