@@ -4,6 +4,9 @@ class Project < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_many :discussions, dependent: :destroy
 
+  has_many :categorizations, dependent: :destroy
+  has_many :categories, through: :categorizations
+
   #validations
   validates :title, presence: true, uniqueness: true
 

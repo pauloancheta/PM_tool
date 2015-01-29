@@ -1,26 +1,30 @@
 <div class="well">
-  <h2><%= @project.title %></h2>
-  <strong>Description:</strong>
-  <p>&emsp;<%= @project.description %></p>
+  <center>
+    <h2><%= @project.title %></h2>
+    <strong>Description:</strong>
+    <p>&emsp;<%= @project.description %></p>
 
-  <% if @project.category.present? %>
-    <strong>Category:</strong>&emsp;<%= @project.category %>
+     <%# if @project.category.present? %>
+      <strong>Category:</strong>&emsp;<%= @project.categories.map(&:name).join(', ') %>
+      <br>
+    <%# end %>
+   
+    <strong>Due Date:</strong>&emsp;<%= @project.due_date %>
     <br>
-  <% end %>
-
-  <strong>Due Date:</strong>&emsp;<%= @project.due_date %>
-  <br>
-  <% if @project.user_id.present? %>
-    <strong>Created By:</strong> &emsp;<%= @user.first_name.capitalize %>
-  <% end %>
+    <% if @project.user_id.present? %>
+      <strong>Created By:</strong> &emsp;<%= @user.first_name.capitalize %>
+    <% end %>
+  
   <br>
 
-  <%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default btn-xs" %>
-  <%= link_to "DELETE", project_path(@project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default btn-xs" %>
-  </div>
+    <%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default btn-xs" %>
+    <%= link_to "DELETE", project_path(@project), 
+      method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default btn-xs" %>
+  </center>
+
+  <br>
 
   <%= render 'tasks/index' %>
-
   <%= render 'discussions/index' %>
 
 </div>
