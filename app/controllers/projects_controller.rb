@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
 
   def show
     @task = Task.new
+    @discussion = Discussion.new
     @user = User.find @project.user_id
   end
 
