@@ -13,20 +13,17 @@
       <br>
     <% end %>
 
-    <strong>Members: </strong><%= User.find( @project.members.map(&:user_id) ).map(&:first_name).join(', ') %>
-    <br>
-
-    <%# if @user == current_user %>
-      <%#= link_to "ADD MEMBER", project_members_path(@project.id) %>
-    <%# end %>
-
-    
+    <!-- 
+      User can only edit and delete the projects they created
+    -->
+    <% if @project.members.present? %>
+      <strong>Members: </strong>
+        <%= User.find( @project.members.map(&:user_id) ).map(&:first_name).join(', ') %>
+      <br>
+    <% end %>
 
   <br>
 
-    <%= link_to "EDIT", edit_project_path(@project), class: "btn btn-default btn-xs" %>
-    <%= link_to "DELETE", project_path(@project), 
-      method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default btn-xs" %>
   </center>
 
   <br>

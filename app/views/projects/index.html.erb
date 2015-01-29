@@ -25,9 +25,11 @@
       <td><%= p.description %></td>
       <td><%= p.due_date %></td>
       <td>
-        <%= link_to "EDIT", edit_project_path(p), class: "btn btn-default" %>
-        <%= link_to "DELETE", project_path(p), 
-              method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+        <% if p.user_id == current_user.id %>
+          <%= link_to "EDIT", edit_project_path(p), class: "btn btn-default" %>
+          <%= link_to "DELETE", project_path(p), 
+                method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+        <% end %>
       </td>
     </tr>
     <% end %> 
