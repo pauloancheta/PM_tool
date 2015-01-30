@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.page(params[:page])
     end
+    @project = Project.new 
   end
 
   def new

@@ -1,5 +1,7 @@
-<div class="well">
+
   <h4>Tasks: </h4>
+  <a id="addTask" ><span class="glyphicon glyphicon-plus"></span></a>
+    <a id="minusTask"><span class="glyphicon glyphicon-minus"></span></a>
   <%= flash[:alert] %>
   <table class="table table-striped">
     <thead>
@@ -33,7 +35,4 @@
     </tbody>
   </table>
   
-  <div class="well" %>
-    <%= render 'tasks/new' %>
-  </div>
-</div>
+ 

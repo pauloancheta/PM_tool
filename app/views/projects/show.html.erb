@@ -27,9 +27,16 @@
   </center>
 
   <br>
-
-  <%= render 'tasks/index' %>
+  
+  <%= render "tasks/index" %>
+  <div class="well newTask" style="display:none;">
+    <%= render "tasks/new" %>
+  </div>
+  
   <%= render 'discussions/index' %>
+  <div class="well newDiscussion" style="display:none;">
+    <%= render 'discussions/new' %>
+  </div>
 
 </div>
 

@@ -11,7 +11,8 @@
   <thead>
     <tr>
       <th>Comments:</th>
-      <th><%= link_to "Create New Comment", new_discussion_comment_path(@discussion), class: "btn btn-default btn-xs"%></th>
+      <th><a id="addComment" ><span class="glyphicon glyphicon-plus"></span></a>
+    <a id="minusComment"><span class="glyphicon glyphicon-minus"></span></a></th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,8 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
-
+<div class="newComment" style="display:none;">
+  <%= render 'comments/new' %>
 </div>

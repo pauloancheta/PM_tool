@@ -4,7 +4,7 @@
       <li class="active"><a href="/">The Home Page</a></li>
       <li><a href="/home/about/">The About Page</a></li>
       <% if user_signed_in? %>
-      <li><a href="/projects/">Projects </a></li>
+      <li><%= link_to "Projects", projects_path %></li>
       <% end %>
     </ul>
   </div>

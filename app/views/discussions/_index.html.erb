@@ -1,6 +1,7 @@
-<div class="well">
+
   <h4>Discussions:</h4>
-  <%= link_to "Create a Discussion", new_project_discussion_path(@project), class: "btn btn-default btn-xs"%>
+  <a id="addDiscussion" ><span class="glyphicon glyphicon-plus"></span></a>
+    <a id="minusDis"><span class="glyphicon glyphicon-minus"></span></a>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -24,6 +25,3 @@
     </tbody>
 
   </table>
-
-  <%= render 'discussions/new' %>
-</div>
