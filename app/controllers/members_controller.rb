@@ -3,10 +3,6 @@ class MembersController < ApplicationController
     @members = Member.all 
   end
 
-  def new
-    @project_members = Project.new
-  end
-
   def create
   end
 

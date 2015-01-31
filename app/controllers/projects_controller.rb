@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @tasks = @project.tasks.order(:status)
     @task = Task.new
     @discussion = Discussion.new
     @user = User.find @project.user_id

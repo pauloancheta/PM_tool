@@ -14,16 +14,16 @@
 
     </thead>
     <tbody>
-        <% @project.tasks.each do |task| %>
+        <% @tasks.each do |task| %>
         <tr>
           <td><%= task.title %></td>
           <td><%= task.due_date %></td>
           <td><%= (User.find task.user_id).first_name.capitalize %></td>
           <td>
             <% if task.status == true %>
-              <%= link_to "DONE", change_toggle_path(task) %>
+              <%= link_to "DONE", change_toggle_path(task), method: :patch %>
             <% else %>
-              <%= link_to "NOT DONE", change_toggle_path(task) %>
+              <%= link_to "NOT DONE", change_toggle_path(task), method: :patch %>
             <% end %> 
             |
             <%= link_to "Delete Task", project_task_path(@project, task), method: :delete, data: {confirm: "are you sure?"} %> |
