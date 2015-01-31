@@ -4,12 +4,14 @@ Rails.application.routes.draw do
     # root "home#landing"
   get "home/about" => "home#about"
   patch "task/:id" => "tasks#toggle", as: :change_toggle
+  get "/favorites" => "favorites#index", as: :favorite_projects
 
   resources :projects do 
     resources :tasks, only: [:new, :create, :destroy, :edit, :update]
-
     resources :discussions
+
     resources :members, only: [:index, :new, :create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :discussions, only: [] do

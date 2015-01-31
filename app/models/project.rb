@@ -10,6 +10,9 @@ class Project < ActiveRecord::Base
   has_many :members, dependent: :destroy
   has_many :users, through: :members
 
+  has_many :favorites, dependent: :destroy
+  has_many :users_favorite, through: :favorites, source: :users
+
   #validations
   validates :title, presence: true, uniqueness: true
 

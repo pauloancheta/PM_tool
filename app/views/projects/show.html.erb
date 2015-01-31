@@ -1,6 +1,7 @@
 <div class="well">
   <center>
     <h2><%= @project.title %></h2>
+
     <strong>Description:</strong>
     <p>&emsp;<%= @project.description %></p>
     <strong>Category:</strong>&emsp;<%= @project.categories.map(&:name).join(', ') %>
@@ -13,16 +14,21 @@
       <br>
     <% end %>
 
-    <!-- 
-      User can only edit and delete the projects they created
-    -->
     <% if @project.members.present? %>
       <strong>Members: </strong>
         <%= User.find( @project.members.map(&:user_id) ).map(&:first_name).join(', ') %>
       <br>
     <% end %>
+    <br>
 
-  <br>
+    <% if @project.user_id != current_user.id %>
+      <% if (@project.favorites.map(&:user_id)).include?(current_user.id) %>
+        <% @favorite = Favorite.where(project_id: @project.id, user_id: current_user.id).first %>
+        <%= link_to "unFavorite", project_favorite_path(@project, @favorite), method: :delete %>
+      <% else %>
+        <%= link_to "Favorite", project_favorites_path(@project), method: :post %>
+      <% end %>
+    <% end %>
 
   </center>
 

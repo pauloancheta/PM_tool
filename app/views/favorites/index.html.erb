@@ -1,0 +1,9 @@
+<table class="table table-striped">
+  <% @favorites.each do |f| %>
+  <% project = Project.find f.project_id %> 
+      <tr>
+        <td><%= project.title %>
+      </tr>
+  <% end %>
+</table>
+<br>

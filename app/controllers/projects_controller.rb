@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
       @projects = Project.page(params[:page])
     end
     @project = Project.new 
+    @favorites = current_user.favorites
   end
 
   def new

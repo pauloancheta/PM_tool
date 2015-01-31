@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :members, dependent: :nullify
   has_many :project_members, through: :members, source: :project
+
+  has_many :favorites, dependent: :nullify
+  has_many :favorite_projects, through: :favorites, source: :project
 end
