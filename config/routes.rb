@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-    root "home#index"
+  root "home#index"
     # root "home#landing"
   get "home/about" => "home#about"
   patch "task/:id" => "tasks#toggle", as: :change_toggle

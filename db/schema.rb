@@ -123,4 +123,6 @@ ActiveRecord::Schema.define(version: 20150131151900) do
   add_foreign_key "categorizations", "projects"
   add_foreign_key "favorites", "projects"
   add_foreign_key "favorites", "users"
+  add_foreign_key "members", "projects"
+  add_foreign_key "members", "users"
 end
