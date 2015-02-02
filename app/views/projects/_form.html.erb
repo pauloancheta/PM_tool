@@ -26,6 +26,11 @@
 
     <%= p.label :members %>
     <%= p.collection_check_boxes :user_ids, User.all, :id, :first_name %>
-  
+    <br>
+
+    <%= p.label :tags %>
+    <%= p.collection_check_boxes :tag_ids, Tag.all, :id, :name, class:"form-control" %>
+    <br>
+
     <%= p.submit %>
   <% end %>

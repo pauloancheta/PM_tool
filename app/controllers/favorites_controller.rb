@@ -1,9 +1,5 @@
 class FavoritesController < ApplicationController
 
-  def index
-    @favorites = current_user.favorites
-  end
-
   def create
     project = Project.find params[:project_id]
     favorite = Favorite.new

@@ -9,3 +9,7 @@
 ["Science", "Technology", "Art", "Music", "Movie"].each do |cat|
   Category.create(name: cat)
 end
+
+["Food", "App", "Travel", "Rails", "HTML"].each do |cat|
+  Tag.create(name: cat)
+end
