@@ -10,6 +10,22 @@
   </div>
 <%= flash[:alert] %>
 </div>
+
+<div class="newProject">
+  <%= render 'new' %>
+</div>
+
+<table class="table table-striped" id="favoriteIndex" style="display:none;">
+  <% @favorites.each do |f| %>
+  <% project = Project.find f.project_id %> 
+      <tr>
+        <td><%= project.title %>
+      </tr>
+  <% end %>
+</table>
+
+<br>
+
 <table class="table table-striped" id="projectIndex">
   <thead>
     <tr>
@@ -41,19 +57,7 @@
 
 </table>
 
-<table class="table table-striped" id="favoriteIndex" style="display:none;">
-  <% @favorites.each do |f| %>
-  <% project = Project.find f.project_id %> 
-      <tr>
-        <td><%= project.title %>
-      </tr>
-  <% end %>
-</table>
-<br>
 
-<div class="newProject">
-  <%= render 'new' %>
-</div>
 
 <%= will_paginate @projects %>
 
