@@ -7,7 +7,7 @@
     <br>
 
     <div class="field">
-    <%= p.label :category %>
+    <%= p.label :category %><br>
     <%= p.collection_check_boxes :category_ids, Category.all, :id, :name, class:"form-control" %>
     </div>
     <br>
@@ -24,11 +24,11 @@
     </div>
     <br>
 
-    <%= p.label :members %>
+    <%= p.label :members %><br>
     <%= p.collection_check_boxes :user_ids, User.all, :id, :first_name %>
-    <br>
+    <br><br>
 
-    <%= p.label :tags %>
+    <%= p.label :tags %><br>
     <%= p.collection_check_boxes :tag_ids, Tag.all, :id, :name, class:"form-control" %>
     <br>
 

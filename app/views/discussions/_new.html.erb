@@ -1,6 +1,6 @@
 <h3>Create a new discussion:</h3>
 
-<%= form_for [@project, @discussion] do |d| %>
+<%= form_for [@project, @discussion],remote: true do |d| %>
   <%= d.label :title %>
   <%= d.text_field :title %>
   <br>
