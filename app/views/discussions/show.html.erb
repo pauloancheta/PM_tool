@@ -17,16 +17,7 @@
   </thead>
   <tbody>
     <% @comments.each do |comment| %>
-      <tr>
-        <td>
-        <%= (User.find comment.user_id).first_name.capitalize %> said: <br>
-        <%= comment.body %>
-        </td>
-        <td>
-        <%= link_to "Delete this comment", discussion_comment_path(@discussion, comment), method: :delete, data: {confirm: "are you sure?"} %>
-        </td>
-        
-      </tr>
+      <%= render partial: 'comments/row', locals: {comment: comment} %>
     <% end %>
   </tbody>
 </table>

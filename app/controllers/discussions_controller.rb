@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-  respond_to :js, :xml, :html
+  respond_to :js
   
   def index
     @discussions = Discussion.all

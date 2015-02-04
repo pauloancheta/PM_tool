@@ -23,9 +23,7 @@
     </thead>
     <tbody>
         <% @tasks.each do |task| %>
-        <tr id="<%= dom_id(task) %>">
           <%= render partial: '/tasks/row', locals: { task: task }%>
-        </tr>
         <% end %> 
     </tbody>
   </table>
