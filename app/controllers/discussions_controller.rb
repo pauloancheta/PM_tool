@@ -1,4 +1,6 @@
 class DiscussionsController < ApplicationController
+  respond_to :js
+  
   def index
     @discussions = Discussion.all
     @discussion = Discussion.new
@@ -14,8 +16,10 @@ class DiscussionsController < ApplicationController
     @discussion = @project.discussions.new params.require(:discussion).permit(:title, :description)
     @discussion.user_id = current_user.id
     if @discussion.save
-      redirect_to project_path(@project)
+      respond_with(@project, @discussion)
     end
+      #redirect_to project_path(@project)
+    
   end
 
   def show
@@ -26,7 +30,10 @@ class DiscussionsController < ApplicationController
 
   def destroy
     @discussion = Discussion.find params[:id]
+    
     @discussion.destroy
-    redirect_to project_path(@discussion.project_id), alert: "Discussion deleted"
+
+    respond_with()
+    #redirect_to project_path(@discussion.project_id), alert: "Discussion deleted"
   end
 end

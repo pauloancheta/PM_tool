@@ -1,0 +1,8 @@
+<tr id="<%= dom_id( discussion )%>">
+  <td><%= link_to discussion.title, project_discussion_path(@project, discussion) %></td>
+  <td><%= discussion.description %></td>
+  <td><%= (User.find discussion.user_id).first_name.capitalize %> </td>
+  <td>
+    <%= link_to "Delete Discussion", project_discussion_path(@project, discussion), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+  </td>
+</tr>

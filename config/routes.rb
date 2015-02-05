@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     resources :members, only: [:index, :new, :create, :destroy]
     resources :favorites, only: [:create, :destroy]
+    resources :tags, only: [:create, :destroy]
   end
 
   resources :discussions, only: [] do

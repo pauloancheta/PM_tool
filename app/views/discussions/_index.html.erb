@@ -2,7 +2,13 @@
   <h4>Discussions:</h4>
   <a id="addDiscussion" ><span class="glyphicon glyphicon-plus"></span></a>
     <a id="minusDiscussion"><span class="glyphicon glyphicon-minus"></span></a>
-  <table class="table table-striped">
+
+  <div class="well newDiscussion" style="display:none;">
+    <%= render 'discussions/new' %>
+  </div>
+
+  
+  <table class="table table-striped" id="discussionTable">
     <thead>
       <tr>
         <th>Title</th>
@@ -13,14 +19,7 @@
     </thead>
     <tbody>
       <% @project.discussions.each do |discussion| %>
-      <tr>
-        <td><%= link_to discussion.title, project_discussion_path(@project, discussion) %></td>
-        <td><%= discussion.description %></td>
-        <td><%= (User.find discussion.user_id).first_name.capitalize %> </td>
-        <td>
-          <%= link_to "Delete Discussion", project_discussion_path(@project, discussion), method: :delete, data: {confirm: "Are you sure?"} %>
-        </td>
-      </tr>
+       <%= render partial: 'discussions/row', locals: { discussion: discussion } %>
       <% end %>
     </tbody>
 

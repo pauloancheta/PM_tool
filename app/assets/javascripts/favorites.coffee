@@ -3,4 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('#favorites').on 'click', ->
-    $('#favoriteIndex').fadeToggle()
+    
+
+    if $('#favoriteIndex').children().length > 0 
+      $('#favoriteIndex').fadeToggle()
+    else
+      if $(@).children().length > 0
+        $(@).children().fadeToggle()
+      else
+        $(@).append('<h5>You have not favorited projects yet </h5 >')

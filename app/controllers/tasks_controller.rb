@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
+  respond_to :js
+
   before_action :task_id, only: [:new, :destroy, :edit, :update, :toggle]
   before_action :project_id, only: [:create, :destroy, :edit, :update]
+
+  
 
   def new
     @task = @project.tasks.new
@@ -11,7 +15,8 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
     @task.status = false #you cannot create a finished project. That would not make sense
     if @task.save
-      redirect_to project_path(@project), notice: "Task created successfully"
+      respond_with(@project)
+      #redirect_to project_path(@project), notice: "Task created successfully"
     else
       @project.tasks.reload
       redirect_to project_path(@project), alert: "Invalid task!"
@@ -20,7 +25,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to project_path(@project), notice: "Task deleted"
+    respond_with()
+    #redirect_to project_path(@project), notice: "Task deleted"
   end
 
   def edit
@@ -37,6 +43,9 @@ class TasksController < ApplicationController
       @task.status = false
     else
       @task.status = true
+      if @task.user_id != current_user.id
+        ProjectMailer.task_done(@task, current_user).deliver_now
+      end
     end
     @task.save
     redirect_to project_path(@task.project_id)

@@ -6,17 +6,21 @@ kings and queens - brooke fraser
 <html>
 <head>
   <title>PMTool</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%# if user_signed_in? %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%# else %>
+    <%#= stylesheet_link_tag 'external', media: 'all' %>
+  <%# end %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <div class="container-fluid">
-      <%= render 'layouts/menu' %>
-      <%= flash[:notice] %>
-      <%= yield %>
+    <% if user_signed_in? %>
+        <%= render 'layouts/menu' %>
+    <% end %>
+        <%= flash[:notice] %>
+        <%= yield %>
   </div>
-
 </body>
 </html>

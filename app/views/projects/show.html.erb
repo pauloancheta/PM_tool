@@ -21,6 +21,13 @@
     <% end %>
     <br>
 
+    <% if @project.tags.present? %>
+      <strong>Tags: </strong>
+        <%= @project.tags.map(&:name).join(', ') %>
+      <br>
+    <% end %>
+    <br>
+
     <% if @project.user_id != current_user.id %>
       <% if (@project.favorites.map(&:user_id)).include?(current_user.id) %>
         <% @favorite = Favorite.where(project_id: @project.id, user_id: current_user.id).first %>
@@ -35,19 +42,12 @@
   <br>
   
   <%= render "tasks/index" %>
-  <div class="well newTask" style="display:none;">
-    <%= render "tasks/new" %>
-  </div>
+  
   
   <%= render 'discussions/index' %>
-  <div class="well newDiscussion" style="display:none;">
-    <%= render 'discussions/new' %>
-  </div>
+  
 
 </div>
-
-
-
 
 
 

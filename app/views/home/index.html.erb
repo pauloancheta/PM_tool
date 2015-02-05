@@ -1,1 +1,6 @@
-<h1>HELLO</h1>
+<% projects = Project.where(user_id: current_user.id ).count %>
+<% if projects == 0 %>
+  <%= render 'projects/new' %>
+<% else %>
+  <h1> WELCOME! </h1>
+<% end%>

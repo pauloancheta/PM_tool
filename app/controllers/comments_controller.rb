@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  
+  respond_to :js
+
   def new
     @discussion = Discussion.find params[:discussion_id]
     @comment = @discussion.comments.new
@@ -10,7 +11,11 @@ class CommentsController < ApplicationController
     @comment = @discussion.comments.new params.require(:comment).permit(:body)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment created successfully"
+      respond_with( @discussion, @comment ) 
+      if @comment.user_id != @discussion.user_id
+        ProjectMailer.new_comment(@comment).deliver_now
+      end
+      #redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment created successfully"
     end
   end
 
@@ -18,7 +23,8 @@ class CommentsController < ApplicationController
     @discussion = Discussion.find params[:discussion_id]
     @comment = Comment.find params[:id]
     @comment.destroy
-    redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment deleted"
+    respond_with()
+    #redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment deleted"
   end
 
 end

@@ -1,0 +1,5 @@
+//alert('lol');
+$('#tasksTable tbody').prepend(' <%= j render partial: "tasks/row", locals: {task: @task} %> ');
+$('#task_title').val('');
+$('#task_due_date').val('');
+$('.newTask').fadeOut();

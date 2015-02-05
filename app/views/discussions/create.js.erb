@@ -1,0 +1,5 @@
+//alert('lol');
+$('#discussionTable tbody').prepend(' <%= j render partial: "discussions/row", locals: {discussion: @discussion} %> ');
+$('#discussion_title').val('');
+$('#discussion_description').val('');
+$('.newDiscussion').fadeOut();
