@@ -43,6 +43,9 @@ class TasksController < ApplicationController
       @task.status = false
     else
       @task.status = true
+      if @task.user_id != current_user.id
+        ProjectMailer.task_done(@task, current_user).deliver_now
+      end
     end
     @task.save
     redirect_to project_path(@task.project_id)
