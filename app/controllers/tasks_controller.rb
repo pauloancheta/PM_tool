@@ -44,7 +44,7 @@ class TasksController < ApplicationController
     else
       @task.status = true
       if @task.user_id != current_user.id
-        ProjectMailer.delay.task_done(@task, current_user)
+        ProjectMailer.delay.task_done(@task, current_user).deliver
       end
     end
     @task.save
