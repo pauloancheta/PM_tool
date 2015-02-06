@@ -1,4 +1,6 @@
 class ProjectMailer < ApplicationMailer
+  @task = []
+  
   default from: ENV["email_username"]
   def new_comment(comment)
     @comment = comment
@@ -14,6 +16,7 @@ class ProjectMailer < ApplicationMailer
     mail to: @user.email, subject: "Task done"
   end
 
+  handle_asynchronously :new_comment, :task_done
 end
 
 
