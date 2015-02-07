@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
       @projects = Project.page(params[:page])
     end
     @project = Project.new 
-    @favorites = current_user.favorites
+    @favorites = Project.find current_user.favorites.map(&:project_id)
   end
 
   def new
@@ -21,7 +21,8 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_path, notice: "Project created successfully"
     else
-      render :new, alert: "Invalid project"
+      flash[:alert] = "Create project failed. Please try again"
+      redirect_to projects_path
     end
   end
 

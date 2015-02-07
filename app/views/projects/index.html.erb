@@ -8,21 +8,31 @@
   <div class="col-md-9" style="margin-top: 32px;">
     <a id="favorites">Favorites</a>
   </div>
-<%= flash[:alert] %>
 </div>
 
 <div class="newProject">
   <%= render 'new' %>
 </div>
 
-<table class="table table-striped" id="favoriteIndex" style="display:none;">
-  <% @favorites.each do |f| %>
-  <% project = Project.find f.project_id %> 
+<div id="favoriteIndex" style="display: none;">
+  <h6> Favorite Index </h6>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= project.title %>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th></th>
       </tr>
-  <% end %>
-</table>
+    </thead>
+    <tbody>
+    <% @favorites.each do |favorite| %>
+        <%= render 'projects/table', p: favorite %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
@@ -38,20 +48,8 @@
   </thead>
 
   <tbody>
-    <% @projects.each do |p| %>
-    <tr>
-      <td><%= link_to p.title, project_path(p)%></td>
-      <td><%= p.categories.map(&:name).join(', ') %></td>
-      <td><%= p.description %></td>
-      <td><%= p.due_date %></td>
-      <td>
-        <% if p.user_id == current_user.id %>
-          <%= link_to "EDIT", edit_project_path(p), class: "btn btn-default" %>
-          <%= link_to "DELETE", project_path(p), 
-                method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-        <% end %>
-      </td>
-    </tr>
+    <% @projects.each do |project| %>
+      <%= render 'projects/table', p: project %>
     <% end %> 
   </tbody>
 

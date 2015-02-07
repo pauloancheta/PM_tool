@@ -19,7 +19,7 @@ kings and queens - brooke fraser
     <% if user_signed_in? %>
         <%= render 'layouts/menu' %>
     <% end %>
-        <%= flash[:notice] %>
+        <%= flash[:notice] || flash[:alert]%>
         <%= yield %>
   </div>
 </body>
