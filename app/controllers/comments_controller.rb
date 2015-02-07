@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_with( @discussion, @comment ) 
       if @comment.user_id != @discussion.user_id
-        ProjectMailer.new_comment(@comment).deliver_now
+        ProjectMailer.delay.new_comment(@comment).deliver
       end
       #redirect_to project_discussion_path(@discussion.project_id, @discussion), notice: "Comment created successfully"
     end

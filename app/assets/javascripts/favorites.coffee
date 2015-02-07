@@ -7,6 +7,7 @@ $ ->
 
     if $('#favoriteIndex').children().length > 0 
       $('#favoriteIndex').fadeToggle()
+      $('#projectIndex').fadeToggle()
     else
       if $(@).children().length > 0
         $(@).children().fadeToggle()

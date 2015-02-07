@@ -1,8 +1,7 @@
 
   <%= form_for @project do |p| %>
     <div class="field">
-      <%= p.label :title %>
-      <%= p.text_field :title, class:"form-control" %>
+      <%= p.text_field :title, class:"form-control", placeholder: "Project Title"%>
     </div>
     <br>
 
@@ -13,8 +12,7 @@
     <br>
 
     <div class="field">
-    <%= p.label :description %>
-    <%= p.text_area :description, class:"form-control" %>
+    <%= p.text_area :description, class:"form-control", placeholder: "Project Description" %>
     </div>
     <br>
 

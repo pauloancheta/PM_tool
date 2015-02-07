@@ -29,6 +29,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'simple_form'
+gem 'mandrill_mailer'
+gem 'whenever', :require => false
+gem 'delayed_job_active_record'
 gem 'animate-rails'
 gem 'thin'
 group :development do
