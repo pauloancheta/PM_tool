@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = @discussion.comments.new params.require(:comment).permit(:body)
     @comment.user_id = current_user.id
     if @comment.save
-      respond_with( @discussion, @comment ) 
+      respond_with() #@discussion, @comment ) 
       if @comment.user_id != @discussion.user_id
         ProjectMailer.delay.new_comment(@comment).deliver
       end

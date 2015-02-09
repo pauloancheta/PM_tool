@@ -3,10 +3,11 @@
   <td><%= task.due_date %></td>
   <td><%= (User.find task.user_id).first_name.capitalize %></td>
   <td>
+
     <% if task.status == true %>
-      <%= link_to "DONE", change_toggle_path(task), method: :patch %>
+      <%= link_to "DONE", change_toggle_path(task), method: :patch, remote: true %>
     <% else %>
-      <%= link_to "NOT DONE", change_toggle_path(task), method: :patch %>
+      <%= link_to "NOT DONE", change_toggle_path(task), method: :patch, remote: true %>
     <% end %> 
     |
     <%= link_to "Delete Task", project_task_path(@project, task), 

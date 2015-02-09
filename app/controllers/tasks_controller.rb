@@ -44,11 +44,12 @@ class TasksController < ApplicationController
     else
       @task.status = true
       if @task.user_id != current_user.id
-        ProjectMailer.delay.task_done(@task, current_user).deliver
+        ProjectMailer.task_done(@task, current_user).deliver_later
       end
     end
     @task.save
-    redirect_to project_path(@task.project_id)
+    # redirect_to project_path(@task.project_id)
+    respond_with()
   end
 
   #private methods begin

@@ -1,1 +1,3 @@
 $('tbody').prepend('<%= j render partial: "comments/row", locals: {comment: @comment}  %>');
+$('#comment_body').val('');
+$('#new_comment').fadeOut();
