@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @project.discussions.each do |discussion| %>
+      <% @discussions.each do |discussion| %>
        <%= render partial: 'discussions/row', locals: { discussion: discussion } %>
       <% end %>
     </tbody>

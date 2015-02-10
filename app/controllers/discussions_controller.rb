@@ -2,7 +2,6 @@ class DiscussionsController < ApplicationController
   respond_to :js
   
   def index
-    @discussions = Discussion.all
     @discussion = Discussion.new
   end
 
@@ -25,7 +24,7 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = Discussion.find params[:id]
     @comment = @discussion.comments.new
-    @comments = @discussion.comments.all
+    @comments = @discussion.comments.all.order(:updated_at).reverse
   end
 
   def destroy

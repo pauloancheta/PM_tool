@@ -1,5 +1,11 @@
-//alert('lol');
-$('#tasksTable tbody').prepend(' <%= j render partial: "tasks/row", locals: {task: @task} %> ');
+//put the new task in the pending table.
+//new tasks are always not done. 
+$('#pendingTask tbody').prepend(' <%= j render partial: "tasks/row", locals: {task: @task} %> ');
 $('#task_title').val('');
 $('#task_due_date').val('');
+
+//fade out the new task partial and change the button
 $('.newTask').fadeOut();
+$('#minusTask').fadeOut(function() {
+  $('#addTask').fadeIn();
+});

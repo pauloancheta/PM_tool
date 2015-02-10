@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
       @projects = Project.page(params[:page]).search params[:search]
     else
       @projects = Project.page(params[:page])
+      @projects = @projects.all.order(:due_date)
     end
     @project = Project.new 
     @favorites = Project.find current_user.favorites.map(&:project_id)
@@ -27,10 +28,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @tasks = @project.tasks.order(:status)
     @task = Task.new
     @discussion = Discussion.new
     @user = User.find @project.user_id
+    @tasks = @project.tasks.order(:updated_at).reverse
+    @discussions = @project.discussions.all.order(:updated_at).reverse
   end
 
   def edit

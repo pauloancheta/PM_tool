@@ -1,14 +1,14 @@
 if( $('#<%= dom_id(@task) %> td a').eq(0).html() === 'DONE' ){
   $('#<%= dom_id(@task) %> ').eq(0).fadeOut(function() {
     $('#<%= dom_id(@task) %> td a').eq(0).html('NOT DONE')
-    $('#pendingTask tbody').append($('#<%= dom_id(@task) %> ').fadeIn() );
+    $('#pendingTask tbody').prepend($('#<%= dom_id(@task) %> ').fadeIn() );
   });
   
 }
 else {
  $('#<%= dom_id(@task) %> ').eq(0).fadeOut(function() {
     $('#<%= dom_id(@task) %> td a').eq(0).html('DONE')
-    $('#doneTask tbody').append($('#<%= dom_id(@task) %> ').fadeIn() );
+    $('#doneTask tbody').prepend($('#<%= dom_id(@task) %> ').fadeIn() );
   });
   
 }

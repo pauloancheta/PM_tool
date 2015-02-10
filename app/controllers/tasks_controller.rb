@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  respond_to :js
+  respond_to :js, :html
 
   before_action :task_id, only: [:new, :destroy, :edit, :update, :toggle]
   before_action :project_id, only: [:create, :destroy, :edit, :update]

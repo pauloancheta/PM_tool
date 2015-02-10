@@ -1,5 +1,11 @@
-//alert('lol');
+//put the new discussion on the top of the discussion table
 $('#discussionTable tbody').prepend(' <%= j render partial: "discussions/row", locals: {discussion: @discussion} %> ');
 $('#discussion_title').val('');
 $('#discussion_description').val('');
+
+//hide the new discussion partial and toggle the buttons
 $('.newDiscussion').fadeOut();
+$('#minusDiscussion').fadeOut(function() {
+  $('#addDiscussion').fadeIn();
+});
+
