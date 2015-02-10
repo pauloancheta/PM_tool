@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('#minus').hide()
-  $('.newProject').hide()
 
   $('#add').on 'click', ->
     $(@).hide()
