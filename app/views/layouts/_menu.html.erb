@@ -24,7 +24,7 @@
       <div class="col-md-5">
         <% if user_signed_in? %>
           <span style="margin-top:15px;">
-            Hello, <%= current_user.first_name.capitalize %>
+            Hello, <%= link_to current_user.first_name.capitalize, edit_user_registration_path %>
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>  
           </span>
         <% end %>

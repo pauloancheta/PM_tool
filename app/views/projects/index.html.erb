@@ -15,23 +15,27 @@
 </div>
 
 <div id="favoriteIndex" style="display: none;">
-  <h6> Favorite Index </h6>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Due Date</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @favorites.each do |favorite| %>
-        <%= render 'projects/table', p: favorite %>
-    <% end %>
-    </tbody>
-  </table>
+  <% if @favorites.length < 1%>
+    <h3> You have not favorited projects yet </h3>
+  <% else %>
+    <h6> Favorite Index </h6>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @favorites.each do |favorite| %>
+          <%= render 'projects/table', p: favorite %>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
 
 <br>

@@ -9,8 +9,9 @@
   </div>
 
 
-
-  
+<div class="row">
+  <div class="col-md-6" id="pendingTask">
+  <h3> Pending Task </h3>
   <table class="table table-striped" id="tasksTable">
     <thead>
       <tr>
@@ -19,13 +20,35 @@
         <th>Added By</th>
         <th></th>
       </tr>
-
     </thead>
     <tbody>
         <% @tasks.each do |task| %>
+          <% if task.status == false %>
           <%= render partial: '/tasks/row', locals: { task: task }%>
+          <% end %>
         <% end %> 
     </tbody>
   </table>
-  
+  </div>
+  <div class="col-md-6" id="doneTask">  
+  <h3> Done Task </h3>
+  <table class="table table-striped" id="tasksTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th>Added By</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @tasks.each do |task| %>
+          <% if task.status == true %>
+          <%= render partial: '/tasks/row', locals: { task: task }%>
+          <% end %>
+        <% end %> 
+    </tbody>
+  </table>
+  </div>
  
+</div>
